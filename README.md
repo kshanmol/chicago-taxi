@@ -27,6 +27,7 @@ I ran into build errors while trying to install the S2 library. So for this assi
 Cells are numbered from 0 to N*N-1 in row-wise fashion. E.g. for a 2 x 2 grid - 
 
 | 0 | 1 |
+
 | 2 | 3 |
 
 #### Data processing and storage
