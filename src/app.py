@@ -8,6 +8,7 @@ import json
 
 app = Flask(__name__)
 
+# Load and preprocess the data
 data = load_parquet("/tmp/chicago_taxi_trips_2020.parquet")
 print(data.info())
 grouped_data = group_by_date(data)

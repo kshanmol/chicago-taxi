@@ -8,6 +8,11 @@ from collections import defaultdict
 from helpers import range_first_date, range_last_date, KMS_TO_MILES, HOURS_TO_SECS
 
 def coordinate_to_cell(latitude, longitude, bounding_box, grid_side_length=2):
+    """
+    Maps a (latitude, longitude) coordinate pair to a cell number 
+    in the N * N grid defined inside the bounding box where N is 
+    the grid_side_length (number of cells in one side of the grid)
+    """
 
     if np.isnan(latitude) or np.isnan(longitude):
         return "Error: NaN values found"
@@ -29,6 +34,12 @@ def coordinate_to_cell(latitude, longitude, bounding_box, grid_side_length=2):
     return int(cell_number)
 
 def average_fare_heatmap(date, groups, bounding_box, grid_side=2):
+    """
+    Calculates the average fare heatmap for a given date
+    based on the pickup latitude and longitude. The heatmap 
+    is built as a (grid_side * grid_side) grid within the 
+    given bounding box.
+    """
 
     date = pd.to_datetime(date, format="%Y-%m-%d", yearfirst=True)
     fares_map = defaultdict(list)
@@ -47,7 +58,10 @@ def average_fare_heatmap(date, groups, bounding_box, grid_side=2):
     return result
 
 def total_trips(start_date, end_date, groups):
-
+    """
+    Returns the number of total trips on each date in the given range
+    (inclusive of both start_date and end_date)
+    """
     start_date = pd.to_datetime(start_date, format="%Y-%m-%d", yearfirst=True)
     end_date = pd.to_datetime(end_date, format="%Y-%m-%d", yearfirst=True)
 
@@ -68,7 +82,10 @@ def total_trips(start_date, end_date, groups):
     return result
 
 def average_speed_24hrs(date, groups):
-
+    """
+    Returns the average km/hr speed in the past 24 hours of the 
+    given date i.e. we consider all trips made on the previous date.
+    """
     date = pd.to_datetime(date, format="%Y-%m-%d", yearfirst=True)
     target_date = date - datetime.timedelta(days=1)
     if target_date < range_first_date or target_date > range_last_date:

@@ -16,10 +16,17 @@ cols = ['unique_key', 'taxi_id', 'trip_start_timestamp', 'trip_end_timestamp',
 'trip_seconds', 'trip_miles', 'fare', 'trip_total', 'pickup_latitude', 'pickup_longitude']
 
 def load_parquet(path, columns=cols):
+    """
+    Loads only the specified subset of columns (to save memory)
+    into a pandas DataFrame
+    """
     table = pq.read_table(path, columns=columns)
     return table.to_pandas()
 
 def group_by_date(table):
+    """
+    Groups all trips into smaller DataFrames by trip date
+    """
     groups = {}
 
     start_date = range_first_date
@@ -34,6 +41,10 @@ def group_by_date(table):
     return groups
 
 def get_bounding_box(data, delta=0.005):
+    """
+    Creates a bounding box for the pickup locations of a given dataset.
+    Add a small delta to ensure all locations lie strictly within the box.
+    """
     bounding_box = {}
     bounding_box['lat_min'] = data['pickup_latitude'].min() - delta
     bounding_box['lat_max'] = data['pickup_latitude'].max() + delta
