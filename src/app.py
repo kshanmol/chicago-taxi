@@ -1,5 +1,4 @@
 from flask import Flask, render_template, url_for, request, redirect
-from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
 from helpers import load_parquet, group_by_date, get_bounding_box
@@ -8,7 +7,6 @@ from analytics import total_trips, average_speed_24hrs, average_fare_heatmap
 import json
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 
 data = load_parquet("/tmp/chicago_taxi_trips_2020.parquet")
 print(data.info())
