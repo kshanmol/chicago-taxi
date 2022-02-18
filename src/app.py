@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
 from helpers import load_parquet, group_by_date, get_bounding_box
-from helpers import total_trips, average_speed_24hrs, average_fare_heatmap
+from analytics import total_trips, average_speed_24hrs, average_fare_heatmap
 
 import json
 
