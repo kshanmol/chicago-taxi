@@ -25,6 +25,7 @@ I'm using Flask, a micro web application framework for Python. For reading and c
 I ran into build errors while trying to install the S2 library. So for this assignment, I decided to write my own function to bin the latitudes and longitudes into a heatmap. We create a bounding box using the maximum and minimum latitude and longitude in the dataset, and divide it into N*N equal sized cells, where N is the grid side length (in number of cells).
 
 Cells are numbered from 0 to N*N-1 in row-wise fashion. E.g. for a 2 x 2 grid - 
+
 | 0 | 1 |
 | 2 | 3 |
 
