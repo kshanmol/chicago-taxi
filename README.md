@@ -1,4 +1,4 @@
-## Anmol Singh - GoJek take home task
+Analytics over the Chicago taxi dataset
 
 ### Running the application
 
